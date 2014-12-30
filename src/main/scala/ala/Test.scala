@@ -1,0 +1,5 @@
+package ala
+
+class Test {
+
+}

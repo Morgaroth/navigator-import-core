@@ -6,20 +6,13 @@ name := "navigator-import-core"
 
 scalaVersion := "2.11.4"
 
-//sourceGenerators in Compile += Def.task {
-//  val file = (sourceManaged in Compile).value / "generated" /  "Generated.scala"
-//  println(file.getAbsolutePath)
-//  IO.write(file, "package generated; object Generated { val version = \"1.2.0\" }")
-//  Seq(file)
-//}.taskValue
-
 buildInfoSettings
 
 sourceGenerators in Compile <+= buildInfo
 
-buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, buildInfoBuildNumber)
+buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion)
 
-buildInfoPackage := "generated.info"
+buildInfoPackage := "io.github.morgaroth.navigator_import.core.build"
 
 releaseSettings
 
@@ -31,6 +24,6 @@ ReleaseKeys.releaseProcess := Seq[ReleaseStep](
   commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
   tagRelease,                             // : ReleaseStep
   setNextVersion,                         // : ReleaseStep
-  commitNextVersion                      // : ReleaseStep
-//  pushChanges                             // : ReleaseStep, also checks that an upstream branch is properly configured
+  commitNextVersion,                      // : ReleaseStep
+  pushChanges                             // : ReleaseStep, also checks that an upstream branch is properly configured
 )
