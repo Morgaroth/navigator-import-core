@@ -4,8 +4,6 @@ import ReleaseStateTransformations._
 
 name := "navigator-import-core"
 
-version := "1.0"
-
 scalaVersion := "2.11.4"
 
 //sourceGenerators in Compile += Def.task {
