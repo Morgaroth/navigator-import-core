@@ -1,8 +1,7 @@
+import generated.info.BuildInfo
 
 object TestClass {
   def main(args: Array[String]) {
-    hello.BuildInfo.sbtVersion
+    println(BuildInfo.sbtVersion)
   }
-
-  def dupa = "sdfsdfs"
 }
