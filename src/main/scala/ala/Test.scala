@@ -1,5 +1,0 @@
-package ala
-
-class Test {
-
-}
