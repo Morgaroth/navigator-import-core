@@ -2,6 +2,8 @@ import sbtrelease.ReleaseStateTransformations._
 import sbtrelease.ReleaseStep
 import sbtrelease.Utilities._
 
+organization  := "io.github.morgaroth"
+
 name := "navigator-import-core"
 
 scalaVersion := "2.11.4"
