@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<gpx creator="GPS Visualizer http://www.gpsvisualizer.com/" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<wpt lat="50.06834" lon="19.90331">
+  <name>50.0682883,19.9036728</name>
+</wpt>
+<wpt lat="50.04098" lon="19.95101">
+  <name>Parkowa, Kraków</name>
+</wpt>
+<wpt lat="50.04874" lon="19.96006">
+  <name>Przemysłowa 12, 33-332 Kraków</name>
+</wpt>
+<trk>
+  <name>50.0682883,19.9036728 - 50.0447813,19.9142437 (4.8 km / 7 mins)</name>
+  <trkseg>
+    <trkpt lat="50.06834" lon="19.90331"></trkpt>
+    <trkpt lat="50.06812" lon="19.90323"></trkpt>
+    <trkpt lat="50.06741" lon="19.90315"></trkpt>
+    <trkpt lat="50.06741" lon="19.90315"></trkpt>
+    <trkpt lat="50.06585" lon="19.91341"></trkpt>
+    <trkpt lat="50.0658" lon="19.91363"></trkpt>
+    <trkpt lat="50.06575" lon="19.91367"></trkpt>
+    <trkpt lat="50.06459" lon="19.9186"></trkpt>
+    <trkpt lat="50.06447" lon="19.91925"></trkpt>
+    <trkpt lat="50.06381" lon="19.92361"></trkpt>
+    <trkpt lat="50.06381" lon="19.92361"></trkpt>
+    <trkpt lat="50.06289" lon="19.92327"></trkpt>
+    <trkpt lat="50.0626" lon="19.92322"></trkpt>
+    <trkpt lat="50.06231" lon="19.92325"></trkpt>
+    <trkpt lat="50.06186" lon="19.92344"></trkpt>
+    <trkpt lat="50.0593" lon="19.92484"></trkpt>
+    <trkpt lat="50.0593" lon="19.92484"></trkpt>
+    <trkpt lat="50.05806" lon="19.9257"></trkpt>
+    <trkpt lat="50.05559" lon="19.9271"></trkpt>
+    <trkpt lat="50.05336" lon="19.92892"></trkpt>
+    <trkpt lat="50.05062" lon="19.93101"></trkpt>
+    <trkpt lat="50.05062" lon="19.93101"></trkpt>
+    <trkpt lat="50.0499" lon="19.93132"></trkpt>
+    <trkpt lat="50.04904" lon="19.93152"></trkpt>
+    <trkpt lat="50.04904" lon="19.93152"></trkpt>
+    <trkpt lat="50.04873" lon="19.93093"></trkpt>
+    <trkpt lat="50.04854" lon="19.93048"></trkpt>
+    <trkpt lat="50.0466" lon="19.92454"></trkpt>
+    <trkpt lat="50.04608" lon="19.9231"></trkpt>
+    <trkpt lat="50.04557" lon="19.92141"></trkpt>
+    <trkpt lat="50.04557" lon="19.92141"></trkpt>
+    <trkpt lat="50.04521" lon="19.91979"></trkpt>
+    <trkpt lat="50.04497" lon="19.91846"></trkpt>
+    <trkpt lat="50.04448" lon="19.91641"></trkpt>
+    <trkpt lat="50.04444" lon="19.91574"></trkpt>
+    <trkpt lat="50.04447" lon="19.91526"></trkpt>
+    <trkpt lat="50.04462" lon="19.91463"></trkpt>
+    <trkpt lat="50.04478" lon="19.91424"></trkpt>
+  </trkseg>
+</trk>
+<trk>
+  <name>50.0447813,19.9142437 - 50.0295797,19.9452293 (6.6 km / 11 mins)</name>
+  <trkseg>
+    <trkpt lat="50.04478" lon="19.91424"></trkpt>
+    <trkpt lat="50.04515" lon="19.91366"></trkpt>
+    <trkpt lat="50.04678" lon="19.91162"></trkpt>
+    <trkpt lat="50.04678" lon="19.91162"></trkpt>
+    <trkpt lat="50.04754" lon="19.91402"></trkpt>
+    <trkpt lat="50.05027" lon="19.92211"></trkpt>
+    <trkpt lat="50.05027" lon="19.92211"></trkpt>
+    <trkpt lat="50.0495" lon="19.92244"></trkpt>
+    <trkpt lat="50.04799" lon="19.92332"></trkpt>
+    <trkpt lat="50.04763" lon="19.92357"></trkpt>
+    <trkpt lat="50.0466" lon="19.92454"></trkpt>
+    <trkpt lat="50.0466" lon="19.92454"></trkpt>
+    <trkpt lat="50.0464" lon="19.92476"></trkpt>
+    <trkpt lat="50.04828" lon="19.93051"></trkpt>
+    <trkpt lat="50.04847" lon="19.93128"></trkpt>
+    <trkpt lat="50.04855" lon="19.93193"></trkpt>
+    <trkpt lat="50.04855" lon="19.93193"></trkpt>
+    <trkpt lat="50.04817" lon="19.9326"></trkpt>
+    <trkpt lat="50.04792" lon="19.9329"></trkpt>
+    <trkpt lat="50.04739" lon="19.93335"></trkpt>
+    <trkpt lat="50.04728" lon="19.93352"></trkpt>
+    <trkpt lat="50.04675" lon="19.93383"></trkpt>
+    <trkpt lat="50.04551" lon="19.93425"></trkpt>
+    <trkpt lat="50.0426" lon="19.93501"></trkpt>
+    <trkpt lat="50.04189" lon="19.93538"></trkpt>
+    <trkpt lat="50.03919" lon="19.93742"></trkpt>
+    <trkpt lat="50.03863" lon="19.93799"></trkpt>
+    <trkpt lat="50.03802" lon="19.9388"></trkpt>
+    <trkpt lat="50.03713" lon="19.93983"></trkpt>
+    <trkpt lat="50.03636" lon="19.94032"></trkpt>
+    <trkpt lat="50.03636" lon="19.94032"></trkpt>
+    <trkpt lat="50.03618" lon="19.94047"></trkpt>
+    <trkpt lat="50.03578" lon="19.94193"></trkpt>
+    <trkpt lat="50.03466" lon="19.94449"></trkpt>
+    <trkpt lat="50.03434" lon="19.94509"></trkpt>
+    <trkpt lat="50.03379" lon="19.94593"></trkpt>
+    <trkpt lat="50.03178" lon="19.94845"></trkpt>
+    <trkpt lat="50.03178" lon="19.94845"></trkpt>
+    <trkpt lat="50.03159" lon="19.94859"></trkpt>
+    <trkpt lat="50.03099" lon="19.94771"></trkpt>
+    <trkpt lat="50.03075" lon="19.94744"></trkpt>
+    <trkpt lat="50.03056" lon="19.94734"></trkpt>
+    <trkpt lat="50.03005" lon="19.94722"></trkpt>
+    <trkpt lat="50.02986" lon="19.94727"></trkpt>
+    <trkpt lat="50.02853" lon="19.94801"></trkpt>
+    <trkpt lat="50.02813" lon="19.94813"></trkpt>
+    <trkpt lat="50.02792" lon="19.94812"></trkpt>
+    <trkpt lat="50.02792" lon="19.94812"></trkpt>
+    <trkpt lat="50.02791" lon="19.94798"></trkpt>
+    <trkpt lat="50.02738" lon="19.94586"></trkpt>
+    <trkpt lat="50.02724" lon="19.94557"></trkpt>
+    <trkpt lat="50.02708" lon="19.94543"></trkpt>
+    <trkpt lat="50.02684" lon="19.9454"></trkpt>
+    <trkpt lat="50.02584" lon="19.94571"></trkpt>
+    <trkpt lat="50.02433" lon="19.94602"></trkpt>
+    <trkpt lat="50.02409" lon="19.94617"></trkpt>
+    <trkpt lat="50.02378" lon="19.94656"></trkpt>
+    <trkpt lat="50.02355" lon="19.9467"></trkpt>
+    <trkpt lat="50.02337" lon="19.94673"></trkpt>
+    <trkpt lat="50.02327" lon="19.94668"></trkpt>
+    <trkpt lat="50.02323" lon="19.94655"></trkpt>
+    <trkpt lat="50.02325" lon="19.94623"></trkpt>
+    <trkpt lat="50.02325" lon="19.94623"></trkpt>
+    <trkpt lat="50.02346" lon="19.94592"></trkpt>
+    <trkpt lat="50.02714" lon="19.9449"></trkpt>
+    <trkpt lat="50.02796" lon="19.94472"></trkpt>
+    <trkpt lat="50.02835" lon="19.9447"></trkpt>
+    <trkpt lat="50.02885" lon="19.94474"></trkpt>
+    <trkpt lat="50.03034" lon="19.94518"></trkpt>
+    <trkpt lat="50.03034" lon="19.94518"></trkpt>
+    <trkpt lat="50.0306" lon="19.94548"></trkpt>
+    <trkpt lat="50.03061" lon="19.94569"></trkpt>
+    <trkpt lat="50.03052" lon="19.94585"></trkpt>
+    <trkpt lat="50.03036" lon="19.94589"></trkpt>
+    <trkpt lat="50.03011" lon="19.94579"></trkpt>
+    <trkpt lat="50.02969" lon="19.94539"></trkpt>
+    <trkpt lat="50.02958" lon="19.94522"></trkpt>
+  </trkseg>
+</trk>
+<trk>
+  <name>50.0295797,19.9452293 - Parkowa, Kraków (3.2 km / 6 mins)</name>
+  <trkseg>
+    <trkpt lat="50.02958" lon="19.94522"></trkpt>
+    <trkpt lat="50.02939" lon="19.94491"></trkpt>
+    <trkpt lat="50.02889" lon="19.94351"></trkpt>
+    <trkpt lat="50.02889" lon="19.94351"></trkpt>
+    <trkpt lat="50.0286" lon="19.94271"></trkpt>
+    <trkpt lat="50.02851" lon="19.94225"></trkpt>
+    <trkpt lat="50.02846" lon="19.94147"></trkpt>
+    <trkpt lat="50.02853" lon="19.94054"></trkpt>
+    <trkpt lat="50.02892" lon="19.93789"></trkpt>
+    <trkpt lat="50.02915" lon="19.9367"></trkpt>
+    <trkpt lat="50.02915" lon="19.9367"></trkpt>
+    <trkpt lat="50.03064" lon="19.93738"></trkpt>
+    <trkpt lat="50.03283" lon="19.93858"></trkpt>
+    <trkpt lat="50.03384" lon="19.93907"></trkpt>
+    <trkpt lat="50.0352" lon="19.93984"></trkpt>
+    <trkpt lat="50.03545" lon="19.94002"></trkpt>
+    <trkpt lat="50.03609" lon="19.94078"></trkpt>
+    <trkpt lat="50.03609" lon="19.94078"></trkpt>
+    <trkpt lat="50.03623" lon="19.94096"></trkpt>
+    <trkpt lat="50.03633" lon="19.94101"></trkpt>
+    <trkpt lat="50.03771" lon="19.94103"></trkpt>
+    <trkpt lat="50.0418" lon="19.94333"></trkpt>
+    <trkpt lat="50.04201" lon="19.94361"></trkpt>
+    <trkpt lat="50.04303" lon="19.94559"></trkpt>
+    <trkpt lat="50.04308" lon="19.94577"></trkpt>
+    <trkpt lat="50.04334" lon="19.9463"></trkpt>
+    <trkpt lat="50.0444" lon="19.94832"></trkpt>
+    <trkpt lat="50.0444" lon="19.94832"></trkpt>
+    <trkpt lat="50.04362" lon="19.9495"></trkpt>
+    <trkpt lat="50.04371" lon="19.94972"></trkpt>
+    <trkpt lat="50.04371" lon="19.94972"></trkpt>
+    <trkpt lat="50.04352" lon="19.95037"></trkpt>
+    <trkpt lat="50.04352" lon="19.95037"></trkpt>
+    <trkpt lat="50.04331" lon="19.95042"></trkpt>
+    <trkpt lat="50.04269" lon="19.95072"></trkpt>
+    <trkpt lat="50.04243" lon="19.95093"></trkpt>
+    <trkpt lat="50.04232" lon="19.95113"></trkpt>
+    <trkpt lat="50.04226" lon="19.95137"></trkpt>
+    <trkpt lat="50.0419" lon="19.95237"></trkpt>
+    <trkpt lat="50.0419" lon="19.95237"></trkpt>
+    <trkpt lat="50.04162" lon="19.95242"></trkpt>
+    <trkpt lat="50.04149" lon="19.95231"></trkpt>
+    <trkpt lat="50.04098" lon="19.95101"></trkpt>
+  </trkseg>
+</trk>
+<trk>
+  <name>Parkowa, Kraków - Przemysłowa 12, 33-332 Kraków (2.4 km / 7 mins)</name>
+  <trkseg>
+    <trkpt lat="50.04098" lon="19.95101"></trkpt>
+    <trkpt lat="50.04149" lon="19.95231"></trkpt>
+    <trkpt lat="50.04162" lon="19.95242"></trkpt>
+    <trkpt lat="50.0419" lon="19.95237"></trkpt>
+    <trkpt lat="50.0419" lon="19.95237"></trkpt>
+    <trkpt lat="50.04166" lon="19.95272"></trkpt>
+    <trkpt lat="50.0408" lon="19.95363"></trkpt>
+    <trkpt lat="50.0408" lon="19.95363"></trkpt>
+    <trkpt lat="50.04129" lon="19.95504"></trkpt>
+    <trkpt lat="50.04138" lon="19.95528"></trkpt>
+    <trkpt lat="50.04148" lon="19.95541"></trkpt>
+    <trkpt lat="50.04148" lon="19.95541"></trkpt>
+    <trkpt lat="50.04229" lon="19.95314"></trkpt>
+    <trkpt lat="50.04229" lon="19.95314"></trkpt>
+    <trkpt lat="50.04229" lon="19.95155"></trkpt>
+    <trkpt lat="50.04226" lon="19.95137"></trkpt>
+    <trkpt lat="50.04226" lon="19.95137"></trkpt>
+    <trkpt lat="50.04234" lon="19.95108"></trkpt>
+    <trkpt lat="50.04254" lon="19.95083"></trkpt>
+    <trkpt lat="50.04325" lon="19.95045"></trkpt>
+    <trkpt lat="50.04352" lon="19.95037"></trkpt>
+    <trkpt lat="50.04352" lon="19.95037"></trkpt>
+    <trkpt lat="50.04361" lon="19.95187"></trkpt>
+    <trkpt lat="50.04361" lon="19.95258"></trkpt>
+    <trkpt lat="50.04361" lon="19.95258"></trkpt>
+    <trkpt lat="50.04578" lon="19.9524"></trkpt>
+    <trkpt lat="50.04578" lon="19.9524"></trkpt>
+    <trkpt lat="50.04555" lon="19.95375"></trkpt>
+    <trkpt lat="50.04555" lon="19.95375"></trkpt>
+    <trkpt lat="50.04631" lon="19.95409"></trkpt>
+    <trkpt lat="50.04631" lon="19.95409"></trkpt>
+    <trkpt lat="50.047" lon="19.95401"></trkpt>
+    <trkpt lat="50.04773" lon="19.95376"></trkpt>
+    <trkpt lat="50.04803" lon="19.95358"></trkpt>
+    <trkpt lat="50.04821" lon="19.95357"></trkpt>
+    <trkpt lat="50.0484" lon="19.95372"></trkpt>
+    <trkpt lat="50.04903" lon="19.95485"></trkpt>
+    <trkpt lat="50.04903" lon="19.95485"></trkpt>
+    <trkpt lat="50.0492" lon="19.95504"></trkpt>
+    <trkpt lat="50.04933" lon="19.95528"></trkpt>
+    <trkpt lat="50.04984" lon="19.95633"></trkpt>
+    <trkpt lat="50.05025" lon="19.95732"></trkpt>
+    <trkpt lat="50.05026" lon="19.95757"></trkpt>
+    <trkpt lat="50.05009" lon="19.95834"></trkpt>
+    <trkpt lat="50.05008" lon="19.95859"></trkpt>
+    <trkpt lat="50.05008" lon="19.95859"></trkpt>
+    <trkpt lat="50.04874" lon="19.96006"></trkpt>
+  </trkseg>
+</trk>
+</gpx>
