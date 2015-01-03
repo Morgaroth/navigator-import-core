@@ -1,9 +1,6 @@
-import sbtrelease.ReleasePlugin.ReleaseKeys._
+import sbtrelease.ReleaseStateTransformations._
 import sbtrelease.ReleaseStep
-import sbtrelease._
-import ReleaseStateTransformations._
 import sbtrelease.Utilities._
-
 
 name := "navigator-import-core"
 
