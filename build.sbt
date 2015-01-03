@@ -1,6 +1,9 @@
+import sbtrelease.ReleasePlugin.ReleaseKeys._
 import sbtrelease.ReleaseStep
 import sbtrelease._
 import ReleaseStateTransformations._
+import sbtrelease.Utilities._
+
 
 name := "navigator-import-core"
 
@@ -23,11 +26,18 @@ sourceGenerators in Compile <+= buildInfo
 
 releaseSettings
 
+val publishArtifactsLocally = ReleaseStep(action = (st: State) => {
+  val extracted = st.extract
+  val ref = extracted.get(thisProjectRef)
+  extracted.runAggregated(publishLocal in Global in ref, st)
+})
+
 ReleaseKeys.releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,              // : ReleaseStep
   inquireVersions,                        // : ReleaseStep
   runTest,                                // : ReleaseStep
   setReleaseVersion,                      // : ReleaseStep
+  publishArtifactsLocally,
   commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
   tagRelease,                             // : ReleaseStep
   setNextVersion,                         // : ReleaseStep
