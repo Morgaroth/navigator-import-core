@@ -9,7 +9,8 @@ class RouteTest extends Specification {
       val objOpt = Route.readFromXML(routeXML)
       objOpt must beSome
       val obj: Route = objOpt.get
-      obj.name must beEqualTo(name)
+      obj.name must beSome
+      obj.name.get must beEqualTo(name)
 
       obj.departure.get.name must beEqualTo(depName)
       obj.departure.get.lat must beEqualTo(depLat)
