@@ -1,3 +1,4 @@
+import com.typesafe.sbt.pgp.PgpKeys._
 import sbtrelease.ReleaseStateTransformations._
 import sbtrelease.ReleaseStep
 import sbtrelease.Utilities._
@@ -31,12 +32,18 @@ val publishArtifactsLocally = ReleaseStep(action = (st: State) => {
   extracted.runAggregated(publishLocal in Global in ref, st)
 })
 
+val publishArtifactsSigned = ReleaseStep(action = (st: State) => {
+  val extracted = st.extract
+  val ref = extracted.get(thisProjectRef)
+  extracted.runAggregated(publishSigned in Global in ref, st)
+})
+
 ReleaseKeys.releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies, // : ReleaseStep
   inquireVersions, // : ReleaseStep
   runTest, // : ReleaseStep
   setReleaseVersion, // : ReleaseStep
-  publishArtifactsLocally,
+  publishArtifactsSigned,
   commitReleaseVersion, // : ReleaseStep, performs the initial git checks
   tagRelease, // : ReleaseStep
   setNextVersion, // : ReleaseStep
