@@ -2,7 +2,7 @@ import sbtrelease.ReleaseStateTransformations._
 import sbtrelease.ReleaseStep
 import sbtrelease.Utilities._
 
-organization  := "io.github.morgaroth"
+organization := "io.github.morgaroth"
 
 name := "navigator-import-core"
 
@@ -32,14 +32,42 @@ val publishArtifactsLocally = ReleaseStep(action = (st: State) => {
 })
 
 ReleaseKeys.releaseProcess := Seq[ReleaseStep](
-  checkSnapshotDependencies,              // : ReleaseStep
-  inquireVersions,                        // : ReleaseStep
-  runTest,                                // : ReleaseStep
-  setReleaseVersion,                      // : ReleaseStep
+  checkSnapshotDependencies, // : ReleaseStep
+  inquireVersions, // : ReleaseStep
+  runTest, // : ReleaseStep
+  setReleaseVersion, // : ReleaseStep
   publishArtifactsLocally,
-  commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
-  tagRelease,                             // : ReleaseStep
-  setNextVersion,                         // : ReleaseStep
-  commitNextVersion,                      // : ReleaseStep
-  pushChanges                             // : ReleaseStep, also checks that an upstream branch is properly configured
+  commitReleaseVersion, // : ReleaseStep, performs the initial git checks
+  tagRelease, // : ReleaseStep
+  setNextVersion, // : ReleaseStep
+  commitNextVersion, // : ReleaseStep
+  pushChanges // : ReleaseStep, also checks that an upstream branch is properly configured
 )
+
+pomExtra := <url>https://bitbucket.org/Morgaroth/navigator-import-core/overview</url>
+  <licenses>
+    <license>
+      <name>BSD-style</name>
+      <url>http://www.opensource.org/licenses/bsd-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>git@bitbucket.org:Morgaroth/navigator-import-core.git</url>
+    <connection>scm:git:git@bitbucket.org:Morgaroth/navigator-import-core.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>morgaroth</id>
+      <name>Mateusz Jaje</name>
+    </developer>
+  </developers>
+
+publishTo := {
+  val nexus = "https://oss.sonatype.org/"
+  if (version.value.endsWith("SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
+
