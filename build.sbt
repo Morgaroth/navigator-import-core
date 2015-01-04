@@ -38,12 +38,24 @@ val publishArtifactsSigned = ReleaseStep(action = (st: State) => {
   extracted.runAggregated(publishSigned in Global in ref, st)
 })
 
+
+sonatypeSettings
+
+import SonatypeKeys._
+
+val finishReleseAtSonatype = ReleaseStep(action = (st: State) => {
+  val extracted = st.extract
+  val ref = extracted.get(thisProjectRef)
+  extracted.runAggregated(sonatypeReleaseAll in Global in ref, st)
+})
+
 ReleaseKeys.releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies, // : ReleaseStep
   inquireVersions, // : ReleaseStep
   runTest, // : ReleaseStep
   setReleaseVersion, // : ReleaseStep
   publishArtifactsSigned,
+  finishReleseAtSonatype,
   commitReleaseVersion, // : ReleaseStep, performs the initial git checks
   tagRelease, // : ReleaseStep
   setNextVersion, // : ReleaseStep
