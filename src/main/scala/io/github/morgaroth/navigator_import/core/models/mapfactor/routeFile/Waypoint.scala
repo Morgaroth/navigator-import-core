@@ -2,14 +2,25 @@ package io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile
 
 import io.github.morgaroth.navigator_import.core.models.XMLParsingUtils
 
-import scala.xml.{Node, Elem, XML}
+import scala.xml._
 
 
 case class Waypoint(
                      name: String,
                      lat: Long,
                      lon: Long
-                     )
+                     ) {
+  def toXML: NodeSeq =
+    <name>
+      {name}
+    </name>
+      <lat>
+        {lat}
+      </lat>
+      <lon>
+        {lon}
+      </lon>
+}
 
 object Waypoint extends XMLParsingUtils {
   def readFromXMLImpl(elem: Node): Option[Waypoint] = {
@@ -23,7 +34,9 @@ object Waypoint extends XMLParsingUtils {
   }
 
   def readFromXML(xml: String): Option[Waypoint] = readFromXMLImpl(XML.loadString(xml))
+
   def readFromXML(xml: Elem): Option[Waypoint] = readFromXMLImpl(xml)
+
   def readFromXML(xml: Node): Option[Waypoint] = readFromXMLImpl(xml)
 }
 

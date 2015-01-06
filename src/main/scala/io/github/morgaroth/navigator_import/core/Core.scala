@@ -10,4 +10,14 @@ object Core {
   def loadGpx(data: String) = GPXDecoder.decodeFromString(data)
 
   def buildInfo = BuildInfo
+
+  def toXML(rp: RoutingPoints) =
+    <routing_points>
+      {
+        List(
+          List(rp.default.map(x => <default_set>{x.toXML}</default_set>)),
+          rp.rest.map(r => Some(<set>{r.toXML}</set>))
+        ).flatten.flatten
+      }
+    </routing_points>
 }

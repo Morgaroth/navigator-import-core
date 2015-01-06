@@ -1,15 +1,26 @@
 package io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile
 
+import java.io.Serializable
+
 import io.github.morgaroth.navigator_import.core.models.XMLParsingUtils
 
-import scala.xml.{Node, Elem, XML}
+import scala.collection.mutable.ArrayBuffer
+import scala.xml._
 
 case class Route(
                   name: Option[String],
                   departure: Option[Waypoint],
                   waypoints: List[Waypoint],
                   destination: Option[Waypoint]
-                  )
+                  ) {
+
+  def toXML: NodeSeq = List(
+      List(name.map(x => <name>{x}</name>)),
+      List(departure.map(x => <departure>{x.toXML}</departure>)),
+      waypoints.map(x => Some(<waypoint>{x.toXML}</waypoint>)),
+      List(destination.map(x => <destination>{x.toXML}</destination>))
+    ).flatten.flatten
+}
 
 object Route extends XMLParsingUtils {
   def readFromXMLImpl(elem: Node): Option[Route] = {
