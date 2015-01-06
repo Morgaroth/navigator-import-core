@@ -11,8 +11,8 @@ class GpxParserTest extends Specification {
       val file: BufferedSource = Source.fromURL(getClass.getResource("/test.gpx"))
       val string: String = file.mkString
       val GPX = GpxParser.loadGPX(string)
-      GPX must not(beNull)
-      GPX.waypoints must have size 3
+      GPX must beRight
+      GPX.right.get.waypoints must have size 3
     }
   }
 }

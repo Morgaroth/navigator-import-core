@@ -3,6 +3,7 @@ package io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile
 import io.github.morgaroth.navigator_import.core.models.XMLParsingUtils
 import io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile.Route._
 
+import scala.util.Try
 import scala.xml.{Node, Elem, XML}
 
 case class RoutingPoints(
@@ -21,9 +22,16 @@ object RoutingPoints extends XMLParsingUtils {
     Some(RoutingPoints(default, rest.map(_.flatten).getOrElse(List.empty[Route])))
   }
 
-  def readFromXML(xml: String): Option[RoutingPoints] = readFromXMLImpl(XML.loadString(xml))
+  def readFromXML(xml: String) = asEither(readFromXMLImpl(XML.loadString(xml)))
 
-  def readFromXML(xml: Elem): Option[RoutingPoints] = readFromXMLImpl(xml)
-
-  def readFromXML(xml: Node): Option[RoutingPoints] = readFromXMLImpl(xml)
+  def asEither[Value](f: => Option[Value]): Either[Throwable, Value] =
+    try {
+      f match {
+        case Some(value) => Right(value)
+        case _ => Left(new IllegalArgumentException("value is none"))
+      }
+    }
+    catch {
+      case t: Throwable => Left(t)
+    }
 }

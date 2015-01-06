@@ -155,9 +155,15 @@ object GPXTrackSegmentDecoder extends GPXTopNodeDecoder[GPXTrackSegment] with De
 
 object GPXDecoder extends DecoderUtils{
 
-  def decodeFromFile(filePath : String) = decode(loadFile(filePath))
+  def decodeFromFile(filePath : String) = asEither(decode(loadFile(filePath)))
 
-  def decodeFromString(string:String) = decode(loadString(string))
+  def decodeFromString(string:String) = asEither(decode(loadString(string)))
+
+  def asEither[Value](f: => Value): Either[Throwable, Value] =
+    try Right(f)
+    catch {
+      case t:Throwable => Left(t)
+    }
 
   def decode(rawData : Elem) : GPX = {
 

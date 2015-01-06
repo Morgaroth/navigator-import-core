@@ -7,14 +7,14 @@ class RoutingPointsTest extends Specification {
   "parsing entire routing_points.xml" should {
     "parse correctly empty default" in {
       val objOpt = RoutingPoints.readFromXML(emptyDefault)
-      objOpt must beSome
-      val obj = objOpt.get
+      objOpt must beRight
+      val obj = objOpt.right.get
       obj.default must beNone
     }
     "parse correctly element without begin point" in {
       val objOpt = RoutingPoints.readFromXML(onewithoutBegin)
-      objOpt must beSome
-      val obj = objOpt.get
+      objOpt must beRight
+      val obj = objOpt.right.get
       obj.rest must have size 1
       obj.rest(0).departure must beNone
       obj.rest(0).waypoints must have size 0
@@ -22,8 +22,8 @@ class RoutingPointsTest extends Specification {
     }
     "parse correctly element without end point" in {
       val objOpt = RoutingPoints.readFromXML(onewithoutEnd)
-      objOpt must beSome
-      val obj = objOpt.get
+      objOpt must beRight
+      val obj = objOpt.right.get
       obj.rest must have size 1
       obj.rest(0).departure must beSome
       obj.rest(0).waypoints must have size 0
@@ -31,8 +31,8 @@ class RoutingPointsTest extends Specification {
     }
     "parse correctly element without both ends" in {
       val objOpt = RoutingPoints.readFromXML(oneWithoutEnds)
-      objOpt must beSome
-      val obj = objOpt.get
+      objOpt must beRight
+      val obj = objOpt.right.get
       obj.rest must have size 1
       obj.rest(0).departure must beNone
       obj.rest(0).waypoints must have size 2
@@ -40,8 +40,8 @@ class RoutingPointsTest extends Specification {
     }
     "parse correctly full file" in {
       val objOpt = RoutingPoints.readFromXML(full)
-      objOpt must beSome
-      val obj = objOpt.get
+      objOpt must beRight
+      val obj = objOpt.right.get
       obj.default must beSome
       obj.rest must have size 5
     }
