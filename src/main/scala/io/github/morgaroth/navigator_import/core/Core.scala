@@ -15,8 +15,8 @@ object Core {
     <routing_points>
       {
         List(
-          List(rp.default.map(x => <default_set>{x.toXML}</default_set>)),
-          rp.rest.map(r => Some(<set>{r.toXML}</set>))
+          rp.rest.map(r => Some(<set>{r.toXML}</set>)),
+          List(rp.default.map(x => <default_set>{x.toXML}</default_set>))
         ).flatten.flatten
       }
     </routing_points>
