@@ -4,7 +4,7 @@ import com.droelf.gpxparser.gpxtype.GPXDecoder
 import io.github.morgaroth.navigator_import.core.build.BuildInfo
 import io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile.RoutingPoints
 
-import scala.xml.{NodeSeq, Node, Elem}
+import scala.xml.{Node, NodeSeq}
 
 object Core {
   def loadRoutingPoints(data: String) = RoutingPoints.readFromXML(data)

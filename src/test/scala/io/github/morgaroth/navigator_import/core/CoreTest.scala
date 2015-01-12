@@ -3,8 +3,6 @@ package io.github.morgaroth.navigator_import.core
 import io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile.RoutingPoints
 import org.specs2.mutable.Specification
 
-import scala.xml.{Node, Utility}
-
 class CoreTest extends Specification {
   
   "Core" should {
