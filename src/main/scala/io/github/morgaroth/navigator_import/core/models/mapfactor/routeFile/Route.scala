@@ -1,10 +1,7 @@
 package io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile
 
-import java.io.Serializable
-
 import io.github.morgaroth.navigator_import.core.models.XMLParsingUtils
 
-import scala.collection.mutable.ArrayBuffer
 import scala.xml._
 
 case class Route(
@@ -15,11 +12,19 @@ case class Route(
                   ) {
 
   def toXML: NodeSeq = List(
-      List(name.map(x => <name>{x}</name>)),
-      List(departure.map(x => <departure>{x.toXML}</departure>)),
-      waypoints.map(x => Some(<waypoint>{x.toXML}</waypoint>)),
-      List(destination.map(x => <destination>{x.toXML}</destination>))
-    ).flatten.flatten
+    List(name.map(x => <name>
+      {x}
+    </name>)),
+    List(departure.map(x => <departure>
+      {x.toXML}
+    </departure>)),
+    waypoints.map(x => Some(<waypoint>
+      {x.toXML}
+    </waypoint>)),
+    List(destination.map(x => <destination>
+      {x.toXML}
+    </destination>))
+  ).flatten.flatten
 }
 
 object Route extends XMLParsingUtils {

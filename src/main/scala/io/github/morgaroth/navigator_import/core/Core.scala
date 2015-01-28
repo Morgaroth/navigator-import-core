@@ -1,15 +1,15 @@
 package io.github.morgaroth.navigator_import.core
 
-import com.droelf.gpxparser.gpxtype.GPXDecoder
+import com.droelf.gpxparser.gpxtype.{GPX, GPXDecoder}
 import io.github.morgaroth.navigator_import.core.build.BuildInfo
 import io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile.RoutingPoints
 
 import scala.xml.{Node, NodeSeq}
 
 object Core {
-  def loadRoutingPoints(data: String) = RoutingPoints.readFromXML(data)
+  def loadRoutingPoints(data: String): Either[Throwable, RoutingPoints] = RoutingPoints.readFromXML(data)
 
-  def loadGpx(data: String) = GPXDecoder.decodeFromString(data)
+  def loadGpx(data: String): Either[Throwable, GPX] = GPXDecoder.decodeFromString(data)
 
   def buildInfo = BuildInfo
 

@@ -12,7 +12,9 @@ class GpxParserTest extends Specification {
       val string: String = file.mkString
       val GPX = GpxParser.loadGPX(string)
       GPX must beRight
-      GPX.right.get.waypoints must have size 3
+      GPX.right.get.departure must beSome
+      GPX.right.get.destination must beSome
+      GPX.right.get.waypoints must have size 1
     }
   }
 }

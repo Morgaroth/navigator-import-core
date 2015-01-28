@@ -7,11 +7,14 @@ organization := "io.github.morgaroth"
 
 name := "navigator-import-core"
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.5"
+
+resolvers += "JavaApiForKML" at "http://download.java.net/maven/2"
 
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-xml" % "1.0.2" withSources(),
-  "org.specs2" %% "specs2-core" % "2.4.15" % "test" withSources()
+  "org.specs2" %% "specs2-core" % "2.4.15" % "test" withSources(),
+  "de.micromata.jak" % "JavaAPIforKml" % "2.2.0-SNAPSHOT"
 )
 
 buildInfoSettings
@@ -99,7 +102,7 @@ pomPostProcess := { (node: scala.xml.Node) =>
         def testIfRemove(dep: scala.xml.Node) =
           ((dep \ "scope").text == "test") ||
             ((dep \ "classifier").text == "sources")
-        val name = n.nameToString(new StringBuilder).toString
+        val name = n.nameToString(new StringBuilder).toString()
         if (name == "dependency") {
           if (testIfRemove(n)) scala.xml.NodeSeq.Empty
           else n
