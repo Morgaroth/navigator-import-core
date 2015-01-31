@@ -7,7 +7,7 @@ class CoreTest extends Specification {
   
   "Core" should {
     "correctly serialize empty routes" in {
-      val data = RoutingPoints(None,List.empty)
+      val data: RoutingPoints = RoutingPoints(None,List.empty)
       val result = Core.toXML(data)
       val trimmed = result.mkString
       trimmed must beEqualTo("<routing_points><default_set/></routing_points>")
