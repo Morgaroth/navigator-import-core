@@ -63,6 +63,8 @@ object modelsConversions {
 
   object fromGpx extends fromGpx
 
-  trait fromGoogleUrl
+  trait fromGoogleUrl{
+
+  }
 
 }

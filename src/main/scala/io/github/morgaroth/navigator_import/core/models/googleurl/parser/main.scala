@@ -155,7 +155,21 @@ case object NoWpt extends BaseWpt
 
 trait Result
 
-case class URL(waypoints: List[BaseWpt], anonymousWpts: List[List[Wpt]], zoom: Int) extends Result
+case class URL(waypoints: List[BaseWpt], anonymousWpts: List[List[Wpt]], zoom: Int) extends Result {
+  def toListOfWaypoints: Either[List[WordsWpt], List[Wpt]] = {
+    val (words, normal) = waypoints.map {
+      case w: Wpt => Right(w)
+      case word: WordsWpt => Left(word)
+    }.partition(_.isLeft)
+    if (words.nonEmpty) {
+      Left(words.map(_.left.get))
+    } else {
+      Right(normal.map(_.right.get).zip(anonymousWpts).map { x =>
+        x._1 :: x._2
+      }.flatten.toList)
+    }
+  }
+}
 
 case class OnlyView(center: Wpt, zoom: Int) extends Result
 
