@@ -156,7 +156,11 @@ case object NoWpt extends BaseWpt
 trait Result
 
 case class URL(waypoints: List[BaseWpt], anonymousWpts: List[List[Wpt]], zoom: Int) extends Result {
-  def toListOfWaypoints: Either[List[WordsWpt], List[Wpt]] = {
+  def toListOfWaypoints: Either[List[WordsWpt], List[Wpt]] = listOfWaypoints
+
+  def isCorrect = listOfWaypoints.isRight
+
+  private lazy val listOfWaypoints: Either[List[WordsWpt], List[Wpt]] = {
     val (words, normal) = waypoints.map {
       case w: Wpt => Right(w)
       case word: WordsWpt => Left(word)
