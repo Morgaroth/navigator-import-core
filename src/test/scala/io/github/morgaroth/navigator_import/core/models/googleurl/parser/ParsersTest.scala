@@ -1,9 +1,8 @@
 package io.github.morgaroth.navigator_import.core.models.googleurl.parser
 
-import org.specs2.execute.Success
 import org.specs2.mutable.Specification
 
-import scala.util.parsing.input.{Reader, CharSequenceReader}
+import scala.util.parsing.input.{CharSequenceReader, Reader}
 
 class ParsersTest extends Specification {
   "Waypoint parser" should {
@@ -79,7 +78,7 @@ class ParsersTest extends Specification {
       success
     }
     "left /@ during parsing waypoints" in {
-      import main.{failure => _, success => _, parse => _}
+      import io.github.morgaroth.navigator_import.core.models.googleurl.parser.main.{failure => _, parse => _, success => _}
       parse("50.0712632,19.8950682/50.0712632,19.8950682/@")(main.wpts ~ "/@" ^^ (x => x._1 -> x._2)) match {
         case main.Success(value, rest) =>
           value._1 must haveSize(2)
