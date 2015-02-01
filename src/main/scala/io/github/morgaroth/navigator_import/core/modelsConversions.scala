@@ -29,13 +29,20 @@ object modelsConversions {
 
     implicit def `convert Waypoint To NavigatorWaypoint`(in: Waypoint): NaviWaypoint = NaviWaypoint(in.name.getOrElse("unnamed"), lat = in.latitude, lon = in.longitude)
 
-    implicit def convertByMethod(in: Waypoint): Object {def toNavigatorWaypoint: NaviWaypoint} = new {
+    implicit def `convert Waypoint To NavigatorWaypoint by Method`(in: Waypoint): Object {def toNavigatorWaypoint: NaviWaypoint; def toNavigatorDestination: NaviWaypoint; def toNavigatorDeparture: NaviWaypoint} = new {
       def toNavigatorWaypoint: NaviWaypoint = `convert Waypoint To NavigatorWaypoint`(in)
 
       def toNavigatorDeparture: NaviWaypoint = `convert Waypoint To NavigatorWaypoint`(in)
 
       def toNavigatorDestination: NaviWaypoint = `convert Waypoint To NavigatorWaypoint`(in)
+    }
 
+    implicit def `convert route to NavigatorRoute`(in: global.Route): NaviRoute = {
+      NaviRoute(in.name, in.departure.map(_.toNavigatorDeparture), in.waypoints.map(_.toNavigatorWaypoint), in.destination.map(_.toNavigatorDestination))
+    }
+
+    implicit def `convert route to NavigatorRoute by method`(in: global.Route): Object {def toNaviRoute: NaviRoute} = new {
+      def toNaviRoute: NaviRoute = in
     }
   }
 
