@@ -14,7 +14,6 @@ resolvers += "JavaApiForKML" at "http://download.java.net/maven/2"
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-xml" % "1.0.2" withSources(),
   "org.specs2" %% "specs2-core" % "2.4.15" % "test" withSources(),
-  "de.micromata.jak" % "JavaAPIforKml" % "2.2.0-SNAPSHOT" withSources(),
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.3" withSources()
 )
 
