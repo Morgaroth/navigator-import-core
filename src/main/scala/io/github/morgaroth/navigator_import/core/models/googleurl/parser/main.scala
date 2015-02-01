@@ -138,6 +138,7 @@ Zarzecze+66,+33-332+Krak%C3%B3w/
 
 import scala.language.postfixOps
 import scala.util.parsing.combinator._
+import scala.util.parsing.input.CharSequenceReader
 
 sealed trait BaseWpt
 
@@ -212,6 +213,12 @@ trait main extends RegexParsers {
           zoom = x._1._3
         )
       })
+
+  def parseLink(link: String): Either[String, URL] = phrase(entireUrl)(new CharSequenceReader(link)).map {
+    case Success(value: URL, _) => Right(value)
+    case Success(value: OnlyView, _) => Left("No url, only view of maps")
+    case NoSuccess(msg, _) => Left(msg)
+  }.get
 }
 
 object main extends main

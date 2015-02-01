@@ -7,10 +7,6 @@ import io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile.Rout
 import scala.xml.{Node, NodeSeq}
 
 object Core {
-  def loadRoutingPoints(data: String): Either[Throwable, RoutingPoints] = RoutingPoints.readFromXML(data)
-
-  def loadGpx(data: String): Either[Throwable, GPX] = GPXDecoder.decodeFromString(data)
-
   def buildInfo = BuildInfo
 
   def toNodeSeq(rp: RoutingPoints): NodeSeq = {NodeSeq.fromSeq(Seq(

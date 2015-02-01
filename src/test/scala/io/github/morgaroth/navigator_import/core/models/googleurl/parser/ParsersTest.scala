@@ -219,6 +219,11 @@ class ParsersTest extends Specification {
 object links {
   val twoWpt_oneBetween_firstAndSecond = "https://www.google.pl/maps/dir/50.0678889,19.9024068/50.0712632,19.8950682/@50.0716396,19.8895299,15z/data=!4m9!4m8!1m5!3m4!1m2!1d19.9036674!2d50.0767216!3s0x47165bb65b7bf787:0x518bd8fa107baf09!1m0!3e0"
   val twoWpt_nothingBetween = "https://www.google.pl/maps/dir/50.0733015,19.9052391/50.0661121,19.9122344/@50.0678889,19.9024068,15z/data=!4m2!4m1!3e0"
+
+  // TODO waiting for tests
+  val twoWpts_noTransportType = "https://www.google.pl/maps/dir/50.0733015,19.9052391/50.0720896,19.9300443/@50.0754085,19.9177705,15z/data=!3m1!4b1"
+  val twoWpts_anotherOptionSelected = "https://www.google.pl/maps/dir/50.0733015,19.9052391/50.0720896,19.9300443/@50.0754085,19.9177705,15z/data=!4m2!4m1!5i1"
+  val twoWpts_aanotherOptionSelected = "https://www.google.pl/maps/dir/50.0733015,19.9052391/50.0720896,19.9300443/@50.0754085,19.9177705,15z/data=!4m2!4m1!5i2"
   /*
   https://www.google.pl/maps/dir/
   50.0678889,19.9024068/
