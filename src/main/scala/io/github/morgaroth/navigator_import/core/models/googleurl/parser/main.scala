@@ -214,11 +214,11 @@ trait main extends RegexParsers {
         )
       })
 
-  def parseLink(link: String): Either[String, URL] = phrase(entireUrl)(new CharSequenceReader(link)).map {
+  def parseLink(link: String): Either[String, URL] = phrase(entireUrl)(new CharSequenceReader(link)) match {
     case Success(value: URL, _) => Right(value)
     case Success(value: OnlyView, _) => Left("No url, only view of maps")
     case NoSuccess(msg, _) => Left(msg)
-  }.get
+  }
 }
 
 object main extends main
