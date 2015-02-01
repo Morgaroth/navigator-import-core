@@ -136,39 +136,80 @@ Zarzecze+66,+33-332+Krak%C3%B3w/
 
 */
 
+import scala.language.postfixOps
+import scala.util.parsing.combinator._
+
 sealed trait Wpt
 
 case class NormalWpt(longitude: Double, latitude: Double) extends Wpt
 
 case class WordsWpt(body: String) extends Wpt
 
+case object NoWpt extends Wpt
+
 case class AnonWpt(wpt: NormalWpt, hexValue: (String, String))
 
-case class URL(waypoints: List[Wpt], anonymousWpts: List[List[AnonWpt]], zoom: Int)
+
+trait Result
+
+case class URL(waypoints: List[Wpt], anonymousWpts: List[List[AnonWpt]], zoom: Int) extends Result
+
+case class OnlyView(center: NormalWpt, zoom: Int) extends Result
 
 
-import scala.util.parsing.combinator._
+trait main extends RegexParsers {
 
-object main extends RegexParsers {
-
-  val begin: Parser[String] = "https://www.google.pl/maps/dir/"
+  val beginMaps: Parser[String] = literal("https://www.google.pl/maps/")
+  val beginMapsDir: Parser[String] = literal("https://www.google.pl/maps/dir/")
   val itudeParser: Parser[Double] = """(-?\d{1,3}\.\d{5,8})""".r ^^ (_.toDouble)
   val stdWpt: Parser[NormalWpt] = itudeParser ~ "," ~ itudeParser ^^ (x => NormalWpt(x._1._1, x._2))
   // Zarzecze+66,+33-332+Krak%C3%B3w/
-  val wordWpt: Parser[WordsWpt] = """[^/]+""".r ^^ (x => WordsWpt(x))
-  val mapCenter = "@" ~> stdWpt
-  val zoom = """\d{1,2}""".r ^^ (_.toInt)
+  val wordWpt: Parser[WordsWpt] = """[^/@]+""".r ^^ (x => WordsWpt(x))
+  val mapCenter: Parser[NormalWpt] = "@" ~> stdWpt
+  val noWpt: Parser[NoWpt.type] = guard(not("@")) ~ """""".r ^^ (x => NoWpt)
+  val zoom: Parser[Int] = ("""\d{1,2}""".r ^^ (_.toInt)) <~ "z"
   val wpt: Parser[Wpt] = stdWpt | wordWpt
-  val wpts: Parser[List[Wpt]] = wpt ~ rep("/" ~> wpt) ^^ (x => x._1 :: x._2)
+  val wpts: Parser[List[Wpt]] = (wpt | noWpt) ~ rep("/" ~> (wpt | noWpt)) ^^ (x => x._1 :: x._2)
 
-  val hex: Parser[String] = """0x[0-9a-f]{16}""".r
-  val anonWpt = "!3m4!1m2" ~> ("!1d" ~> itudeParser) ~ ("!2d" ~> itudeParser) ~ ("!3s" ~> hex) ~ (":" ~> hex) ^^ {
+  val anonHeader: Parser[(Int, Int)] = "!4d" ~> """\d{1,3}""".r ~ ("!4d" ~> """\d{1,3}""".r) ^^ (x => x._1.toInt -> x._2.toInt)
+  val hex: Parser[String] = """0x[0-9a-f]{16}""".r ^^ identity
+  val anonWpt: Parser[AnonWpt] = "!3m4!1m2" ~> ("!1d" ~> itudeParser) ~ ("!2d" ~> itudeParser) ~ ("!3s" ~> hex) ~ (":" ~> hex) ^^ {
     x => AnonWpt(NormalWpt(x._1._1._1, x._1._1._2), x._1._2 -> x._2)
   }
-  val anonWptsBlock = """1m(\d{1,3})""".r ^^ (_.toInt)
-  val urlParser = begin ~> wpts
+  val anonBlock: Parser[List[AnonWpt]] = (("""1m(\d{1,3})""".r ^^ (_.toInt)) ~ rep(anonWpt) ^^ (x => x._1 -> x._2) withFilter (x => x._1 / 5 == x._2.size)) ^^ (_._2)
+  val anonData: Parser[((Int, Int), List[List[AnonWpt]])] = anonHeader ~ rep(anonBlock) <~ "!3e0" ^^ (x => (x._1, x._2))
 
+  val firstPart: Parser[(List[Wpt], NormalWpt, Int)] = wpts.? ~ ("/" ~> mapCenter) ~ ("," ~> zoom) ^^ (x => (x._1._1.getOrElse(List.empty), x._1._2, x._2))
+  val secondPart: Parser[Option[((Int, Int), List[List[AnonWpt]])]] = ("/data=" ~> anonData).? ^^ (_.map(x => (x._1, x._2)))
+
+  val entireUrl: Parser[Result] =
+    (beginMaps ~> mapCenter ~ ("," ~> zoom) ^^ (x => OnlyView(x._1, x._2))) |
+      (beginMapsDir ~> firstPart ~ secondPart ^^ { x =>
+        URL(
+          waypoints = x._1._1,
+          anonymousWpts = x._2.map(_._2).getOrElse(List.empty[List[AnonWpt]]),
+          zoom = x._1._3
+        )
+      })
 }
+
+object main extends main
+
+
+/*
+link bez niczego
+https://www.google.pl/maps/@50.0678889,19.9024068,15z
+ */
+
+/*
+link bez celu
+https://www.google.pl/maps/dir/50.0712632,19.8950682//@50.0678889,19.9024068,15z
+ */
+/*
+link z celem (dwa punkty i nic więcej)
+https://www.google.pl/maps/dir/50.0712632,19.8950682/50.0646796,19.9183283/@50.0678889,19.9024068,15z
+ */
+
 
 /*
 
