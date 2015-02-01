@@ -195,7 +195,7 @@ trait main extends RegexParsers {
   val wpts: Parser[List[BaseWpt]] = (wpt | noWpt) ~ rep("/" ~> (wpt | noWpt)) ^^ (x => x._1 :: x._2)
 
   val anonHeader: Parser[(Int, Int)] = "!4m" ~> """\d{1,3}""".r ~ ("!4m" ~> """\d{1,3}""".r) ^^ (x => x._1.toInt -> x._2.toInt)
-  val hex: Parser[String] = """0x[0-9a-f]{16}""".r ^^ identity
+  val hex: Parser[String] = """0x[0-9a-f]{15,16}""".r ^^ identity
   val anonWpt: Parser[Wpt] = "!3m4!1m2" ~> ("!1d" ~> itudeParser) ~ ("!2d" ~> itudeParser) ~ ("!3s" ~> hex) ~ (":" ~> hex) ^^ {
     x => Wpt(x._1._1._1, x._1._1._2)
   }
