@@ -139,22 +139,25 @@ Zarzecze+66,+33-332+Krak%C3%B3w/
 import scala.language.postfixOps
 import scala.util.parsing.combinator._
 
-sealed trait Wpt
+sealed trait BaseWpt
 
-case class NormalWpt(longitude: Double, latitude: Double) extends Wpt
 
-case class WordsWpt(body: String) extends Wpt
+/**
+ * @param longitude -180 : 180, for Crackow is ~19
+ * @param latitude -90:90, for Crackow is ~50
+ */
+case class Wpt(longitude: Double, latitude: Double) extends BaseWpt
 
-case object NoWpt extends Wpt
+case class WordsWpt(body: String) extends BaseWpt
 
-case class AnonWpt(wpt: NormalWpt, hexValue: (String, String))
+case object NoWpt extends BaseWpt
 
 
 trait Result
 
-case class URL(waypoints: List[Wpt], anonymousWpts: List[List[AnonWpt]], zoom: Int) extends Result
+case class URL(waypoints: List[BaseWpt], anonymousWpts: List[List[Wpt]], zoom: Int) extends Result
 
-case class OnlyView(center: NormalWpt, zoom: Int) extends Result
+case class OnlyView(center: Wpt, zoom: Int) extends Result
 
 
 trait main extends RegexParsers {
@@ -162,32 +165,32 @@ trait main extends RegexParsers {
   val beginMaps: Parser[String] = literal("https://www.google.pl/maps/")
   val beginMapsDir: Parser[String] = literal("https://www.google.pl/maps/dir/")
   val itudeParser: Parser[Double] = """(-?\d{1,3}\.\d{5,8})""".r ^^ (_.toDouble)
-  val stdWpt: Parser[NormalWpt] = itudeParser ~ "," ~ itudeParser ^^ (x => NormalWpt(x._1._1, x._2))
+  val stdWpt: Parser[Wpt] = itudeParser ~ "," ~ itudeParser ^^ (x => Wpt(x._2, x._1._1))
   // Zarzecze+66,+33-332+Krak%C3%B3w/
   val wordWpt: Parser[WordsWpt] = """[^/@]+""".r ^^ (x => WordsWpt(x))
-  val mapCenter: Parser[NormalWpt] = "@" ~> stdWpt
+  val mapCenter: Parser[Wpt] = "@" ~> stdWpt
   val noWpt: Parser[NoWpt.type] = guard(not("@")) ~ """""".r ^^ (x => NoWpt)
   val zoom: Parser[Int] = ("""\d{1,2}""".r ^^ (_.toInt)) <~ "z"
-  val wpt: Parser[Wpt] = stdWpt | wordWpt
-  val wpts: Parser[List[Wpt]] = (wpt | noWpt) ~ rep("/" ~> (wpt | noWpt)) ^^ (x => x._1 :: x._2)
+  val wpt: Parser[BaseWpt] = stdWpt | wordWpt
+  val wpts: Parser[List[BaseWpt]] = (wpt | noWpt) ~ rep("/" ~> (wpt | noWpt)) ^^ (x => x._1 :: x._2)
 
-  val anonHeader: Parser[(Int, Int)] = "!4d" ~> """\d{1,3}""".r ~ ("!4d" ~> """\d{1,3}""".r) ^^ (x => x._1.toInt -> x._2.toInt)
+  val anonHeader: Parser[(Int, Int)] = "!4m" ~> """\d{1,3}""".r ~ ("!4m" ~> """\d{1,3}""".r) ^^ (x => x._1.toInt -> x._2.toInt)
   val hex: Parser[String] = """0x[0-9a-f]{16}""".r ^^ identity
-  val anonWpt: Parser[AnonWpt] = "!3m4!1m2" ~> ("!1d" ~> itudeParser) ~ ("!2d" ~> itudeParser) ~ ("!3s" ~> hex) ~ (":" ~> hex) ^^ {
-    x => AnonWpt(NormalWpt(x._1._1._1, x._1._1._2), x._1._2 -> x._2)
+  val anonWpt: Parser[Wpt] = "!3m4!1m2" ~> ("!1d" ~> itudeParser) ~ ("!2d" ~> itudeParser) ~ ("!3s" ~> hex) ~ (":" ~> hex) ^^ {
+    x => Wpt(x._1._1._1, x._1._1._2)
   }
-  val anonBlock: Parser[List[AnonWpt]] = (("""1m(\d{1,3})""".r ^^ (_.toInt)) ~ rep(anonWpt) ^^ (x => x._1 -> x._2) withFilter (x => x._1 / 5 == x._2.size)) ^^ (_._2)
-  val anonData: Parser[((Int, Int), List[List[AnonWpt]])] = anonHeader ~ rep(anonBlock) <~ "!3e0" ^^ (x => (x._1, x._2))
+  val anonBlock: Parser[List[Wpt]] = (("!1m" ~> """\d{1,3}""".r ^^ (_.toInt)) ~ rep(anonWpt) ^^ (x => x._1 -> x._2) withFilter (x => x._1 / 5 == x._2.size)) ^^ (_._2)
+  val anonData: Parser[((Int, Int), List[List[Wpt]])] = (anonHeader ~ rep(anonBlock)) ~ ("!3e" ~> """\d""".r) ^^ (x => (x._1._1, x._1._2))
 
-  val firstPart: Parser[(List[Wpt], NormalWpt, Int)] = wpts.? ~ ("/" ~> mapCenter) ~ ("," ~> zoom) ^^ (x => (x._1._1.getOrElse(List.empty), x._1._2, x._2))
-  val secondPart: Parser[Option[((Int, Int), List[List[AnonWpt]])]] = ("/data=" ~> anonData).? ^^ (_.map(x => (x._1, x._2)))
+  val firstPart: Parser[(List[BaseWpt], Wpt, Int)] = wpts.? ~ ("/" ~> mapCenter) ~ ("," ~> zoom) ^^ (x => (x._1._1.getOrElse(List.empty), x._1._2, x._2))
+  val secondPart: Parser[Option[((Int, Int), List[List[Wpt]])]] = ("/data=" ~> anonData).? ^^ (_.map(x => (x._1, x._2)))
 
   val entireUrl: Parser[Result] =
     (beginMaps ~> mapCenter ~ ("," ~> zoom) ^^ (x => OnlyView(x._1, x._2))) |
       (beginMapsDir ~> firstPart ~ secondPart ^^ { x =>
         URL(
           waypoints = x._1._1,
-          anonymousWpts = x._2.map(_._2).getOrElse(List.empty[List[AnonWpt]]),
+          anonymousWpts = x._2.map(_._2).getOrElse(List.empty[List[Wpt]]),
           zoom = x._1._3
         )
       })
