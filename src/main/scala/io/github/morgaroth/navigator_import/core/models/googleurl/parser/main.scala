@@ -165,6 +165,7 @@ case class URL(waypoints: List[BaseWpt], anonymousWpts: List[List[Wpt]], zoom: I
     val (words, normal) = waypoints.map {
       case w: Wpt => Right(w)
       case word: WordsWpt => Left(word)
+      case noWpt@NoWpt => Left(WordsWpt("Missing departure or destination waypoint"))
     }.partition(_.isLeft)
     if (words.nonEmpty) {
       Left(words.map(_.left.get))
