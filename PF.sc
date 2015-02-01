@@ -1,4 +1,4 @@
-import io.github.morgaroth.navigator_import.core.models.gogoleurl.parser._
+import io.github.morgaroth.navigator_import.core.models.googleurl.parser._
 
 import scala.util.parsing.input.CharSequenceReader
 

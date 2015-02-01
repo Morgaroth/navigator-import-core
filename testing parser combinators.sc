@@ -1,4 +1,4 @@
-import io.github.morgaroth.navigator_import.core.models.gogoleurl.parser.{WordsWpt, NoWpt, BaseWpt, Wpt}
+import io.github.morgaroth.navigator_import.core.models.googleurl.parser.{WordsWpt, NoWpt, BaseWpt, Wpt}
 
 import scala.util.parsing.combinator.RegexParsers
 import scala.util.parsing.input.CharSequenceReader

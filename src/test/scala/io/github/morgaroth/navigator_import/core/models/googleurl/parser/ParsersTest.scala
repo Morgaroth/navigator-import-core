@@ -1,4 +1,4 @@
-package io.github.morgaroth.navigator_import.core.models.gogoleurl.parser
+package io.github.morgaroth.navigator_import.core.models.googleurl.parser
 
 import org.specs2.execute.Success
 import org.specs2.mutable.Specification
