@@ -1,7 +1,10 @@
 package io.github.morgaroth.navigator_import.core.models.mapfactor.routeFile
 
+import java.text.SimpleDateFormat
+
 import io.github.morgaroth.navigator_import.core.models.XMLParsingUtils
 
+import scala.compat.Platform
 import scala.xml._
 
 case class Route(
@@ -11,10 +14,12 @@ case class Route(
                   destination: Option[Waypoint]
                   ) {
 
+  import Route.dateFormat
+
   def toXML: NodeSeq = List(
     List(name.map(x => <name>
       {x}
-    </name>)),
+    </name>).getOrElse(dateFormat.format(Platform.currentTime))),
     List(departure.map(x => <departure>
       {x.toXML}
     </departure>)),
@@ -28,6 +33,9 @@ case class Route(
 }
 
 object Route extends XMLParsingUtils {
+
+  private val dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy")
+
   def readFromXMLImpl(elem: Node): Option[Route] = {
     val name = readSingleValue(elem, "name").map(_.text)
     val dep = readSingleValue(elem, "departure").map(Waypoint.readFromXML).flatten
