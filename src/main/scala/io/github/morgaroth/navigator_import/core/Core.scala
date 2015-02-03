@@ -11,7 +11,7 @@ object Core {
 
   def toNodeSeq(rp: RoutingPoints): NodeSeq = {NodeSeq.fromSeq(Seq(
     rp.rest.map(r => Some(<set>{r.toXML}</set>)),
-    List(rp.default.map(x => <default_set>{x.toXML}</default_set>).orElse(Some(<default_set/>)))
+    List(rp.default.map(x => <default_set>{x.toXML(withName = false)}</default_set>).orElse(Some(<default_set/>)))
   ).flatten.flatten)}
 
   def toXML(rp: RoutingPoints): Node = {
