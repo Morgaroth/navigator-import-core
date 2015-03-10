@@ -17,12 +17,10 @@ case class Route(
   import Route.dateFormat
 
   def toXML(implicit withName: Boolean = true): NodeSeq = List(
-    if (withName) {
-      List(name.map(x => <name>
-        {x}
-      </name>).getOrElse(dateFormat.format(Platform.currentTime)))
-    }
-    else List.empty,
+    List(if (withName) name.orElse(Some(dateFormat.format(Platform.currentTime))).map(x => <name>
+      {x}
+    </name>)
+    else None),
     List(departure.map(x => <departure>
       {x.toXML}
     </departure>)),
